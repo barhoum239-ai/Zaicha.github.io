@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Premier Anniversaire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, 
+                #ffd6e0 0%, 
+                #ffebf3 25%, 
+                #fff0f7 50%, 
+                #ffe4ef 75%, 
+                #ffd9e8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .hearts-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 107, 107, 0.3);
+            animation: float 8s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .love-letter {
+            position: relative;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(255, 248, 250, 0.95) 100%);
+            padding: 70px 50px;
+            border-radius: 25px;
+            box-shadow: 
+                0 20px 40px rgba(214, 51, 132, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                inset 0 0 30px rgba(255, 182, 193, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .love-letter::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                #ff6b6b, #ff8e8e, #ffb6c1, #ffd6d6, #ffb6c1);
+            border-radius: 27px;
+            z-index: -1;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .anniversary-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d63384, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .message-section {
+            margin: 35px 0;
+        }
+
+        .message-line {
+            font-size: 1.6em;
+            line-height: 1.8;
+            margin: 20px 0;
+            color: #c2185b;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            font-style: italic;
+        }
+
+        .message-line:nth-child(1) { animation-delay: 0.2s; }
+        .message-line:nth-child(2) { animation-delay: 0.4s; }
+        .message-line:nth-child(3) { animation-delay: 0.6s; }
+        .message-line:nth-child(4) { animation-delay: 0.8s; }
+        .message-line:nth-child(5) { animation-delay: 1.0s; }
+        .message-line:nth-child(6) { animation-delay: 1.2s; }
+        .message-line:nth-child(7) { animation-delay: 1.4s; }
+        .message-line:nth-child(8) { animation-delay: 1.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .gift-section {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 107, 107, 0.1));
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 4px solid #ff6b6b;
+            transform: perspective(500px) rotateX(1deg);
+        }
+
+        .gift-line {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin: 15px 0;
+            color: #e83e8c;
+            font-weight: 500;
+        }
+
+        .forever-section {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .forever-line {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #d63384;
+            margin: 15px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .date-section {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #ffb6c1;
+        }
+
+        .anniversary-date {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            color: #ff6b6b;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .eternity-promise {
+            font-size: 1.3em;
+            color: #c2185b;
+            font-style: italic;
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff6b6b;
+            opacity: 0.2;
+            animation: heartFloat 6s infinite linear;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .signature-section {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .signature-label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: #d63384;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 2s;
+        }
+
+        .signature-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .signature-svg {
+            width: 300px;
+            height: 120px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .signature-path {
+            fill: #d63384;
+            opacity: 0;
+            animation: fadeInSignature 2s ease forwards;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes fadeInSignature {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-background" id="heartsBg"></div>
+    
+    <div class="love-letter">
+        <div class="header">
+            <h1 class="anniversary-title">Notre Premier Anniversaire</h1>
+        </div>
+        
+        <div class="message-section">
+            <div class="message-line">Un an d'amour,</div>
+            <div class="message-line">de rires,</div>
+            <div class="message-line">de souvenirs</div>
+            <div class="message-line">et de promesses,</div>
+        </div>
+        
+        <div class="gift-section">
+            <div class="gift-line">Chaque jour à tes côtés</div>
+            <div class="gift-line">est un cadeau silencieux,</div>
+            <div class="gift-line">un battement</div>
+            <div class="gift-line">de cœur partagé,</div>
+        </div>
+        
+        <div class="forever-section">
+            <div class="forever-line">À nous deux,</div>
+            <div class="forever-line">pour toujours —</div>
+        </div>
+        
+        <div class="date-section">
+            <div class="anniversary-date">02.11.2024</div>
+            <div class="eternity-promise">le début d'une belle éternité</div>
+        </div>
+        
+        <div class="signature-section">
+            <div class="signature-label">Je t'aime infiniment</div>
+            
+           
+        </div>
+        
+        <div class="floating-hearts" id="floatingHearts"></div>
+    </div>
+
+    <script>
+        // Create background hearts
+        function createBackgroundHearts() {
+            const heartsBg = document.getElementById('heartsBg');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '♥';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                heartsBg.appendChild(heart);
+            }
+        }
+
+        // Create floating hearts around the message
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '♥';
+                heart.style.setProperty('--tx', (Math.random() * 200 - 100) + 'px');
+                heart.style.setProperty('--ty', (Math.random() * 200 - 100) + 'px');
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Initialize all effects
+        document.addEventListener('DOMContentLoaded', function() {
+            createBackgroundHearts();
+            createFloatingHearts();
+        });
+    </script>
+</body>
+</html>
